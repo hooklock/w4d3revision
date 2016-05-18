@@ -1,0 +1,22 @@
+<div class="content">
+
+  <h2>Edit Album</h2>
+
+  <form action="/albums/<%= @album.id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <label for="name"> Name:</label>
+    <input type="text" name="name" value="<%= @album.name %>"></input>
+    <!-- solution -->
+    <select name="artist_id">
+      <% @artists.each do |artist| %>
+        <option value="<%= artist.id %>" <%= 'selected' if @album.artist.id == artist.id %>><%= artist.name %></option>
+      <% end %>
+    </select>
+
+    <input type="submit" value="Update Album"></input>
+  </form>
+  <!-- Not in solution? -->
+  <form action="/albums/<%= @album.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Album">
+  </form>
